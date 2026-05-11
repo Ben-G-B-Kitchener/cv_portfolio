@@ -303,3 +303,6 @@ a:hover {
 .card p {
   max-width: none;
 }
+.card {
+  width: 100%;
+}
