@@ -298,3 +298,8 @@ a:hover {
   background: #33ff66;
   color: #001100;
 }
+
+/* Allow cards to use full width */
+.card p {
+  max-width: none;
+}
