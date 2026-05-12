@@ -6,9 +6,9 @@
 
   --border: rgba(90, 255, 140, 0.18);
 
-  --text: #a7ffb0;
-  --muted: #68b36f;
-  --heading: #d8ffe0;
+  --text: #7dff8a;      /* darker, less pastel */
+  --muted: #4fbf63;     /* deeper terminal green */
+  --heading: #b6ffbf;   /* still bright, but not near-white */
 
   --accent: #33ff66;
   --accent-glow: rgba(51, 255, 102, 0.28);
