@@ -330,3 +330,75 @@ a:hover {
 .card {
   width: 100%;
 }
+
+/* Retro CRT video wrapper */
+.video-wrapper {
+  position: relative;
+
+  border-radius: 0.35rem;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(51,255,102,0.25);
+
+  box-shadow:
+    0 0 20px rgba(51,255,102,0.18),
+    inset 0 0 24px rgba(51,255,102,0.08);
+}
+
+/* Green CRT video effect */
+.retro-video {
+  display: block;
+
+  width: 100%;
+
+  filter:
+    grayscale(1)
+    sepia(1)
+    hue-rotate(55deg)
+    saturate(8)
+    brightness(0.7)
+    contrast(1.35);
+}
+
+/* Scanlines */
+.video-wrapper::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(140,255,170,0.05) 3px,
+      transparent 4px
+    );
+
+  mix-blend-mode: screen;
+
+  z-index: 2;
+}
+
+/* CRT glow */
+.video-wrapper::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(0,0,0,0.35) 100%
+    );
+
+  z-index: 3;
+}
