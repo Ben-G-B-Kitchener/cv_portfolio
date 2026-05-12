@@ -17,7 +17,7 @@
 }
 
 /* ================================
-   RESET
+   BASE RESET
 ================================ */
 
 * {
@@ -42,7 +42,7 @@ body {
   line-height: 1.7;
   letter-spacing: 0.03em;
 
-  text-shadow: 0 0 5px rgba(51, 255, 102, 0.18);
+  text-shadow: 0 0 6px rgba(51, 255, 102, 0.25);
 
   overflow-x: hidden;
 }
@@ -66,7 +66,7 @@ body::before {
       transparent 4px
     );
 
-  opacity: 0.35;
+  opacity: 0.4;
   z-index: 999;
 }
 
@@ -76,8 +76,7 @@ body::after {
   inset: 0;
   pointer-events: none;
 
-  background: rgba(0, 255, 80, 0.012);
-
+  background: rgba(0, 255, 80, 0.015);
   animation: flicker 0.15s infinite;
   z-index: 998;
 }
@@ -89,16 +88,9 @@ body::after {
 }
 
 /* ================================
-   LAYOUT
+   LAYOUT SYSTEM
 ================================ */
 
-.section {
-  max-width: 1400px;
-  margin: auto;
-  padding: 4rem 1.5rem;
-}
-
-/* FLEX HELPERS */
 .flex {
   display: flex;
 }
@@ -115,8 +107,15 @@ body::after {
   gap: 1.5rem;
 }
 
+/* sections */
+.section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 4rem 1.5rem;
+}
+
 /* ================================
-   HEADER (FIXED SIZE ISSUE)
+   HEADER
 ================================ */
 
 .header {
@@ -132,13 +131,6 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* FIX: stop giant header text */
-.header h1 {
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  margin: 0;
 }
 
 /* ================================
@@ -166,8 +158,13 @@ h1, h2, h3 {
   font-family: "Courier New", monospace;
   text-transform: uppercase;
   color: var(--heading);
-  text-shadow: 0 0 6px rgba(51,255,102,0.25);
+  text-shadow: 0 0 8px rgba(51,255,102,0.35);
   margin: 0;
+}
+
+h1 {
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
 }
 
 h2 {
@@ -176,33 +173,25 @@ h2 {
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
-/* BODY TEXT */
-p, li, span {
-  color: var(--muted);
-}
-
-/* IMPORTANT: prevents “white text” leftovers */
-.text-zinc-100,
-.text-zinc-200,
-.text-zinc-300,
-.text-zinc-400,
-.text-zinc-500 {
-  color: var(--muted) !important;
+.hero-title {
+  font-size: 2.6rem;
+  margin-top: 1rem;
 }
 
 /* ================================
-   TEXT HELPERS
+   TEXT SYSTEM
 ================================ */
+
+.text {
+  color: var(--text);
+  max-width: 70ch;
+}
 
 .muted {
   color: var(--muted);
-}
-
-strong, b {
-  color: var(--heading);
 }
 
 /* ================================
@@ -217,14 +206,14 @@ strong, b {
   padding: 2rem;
   width: 100%;
 
-  position: relative;
-
   box-shadow:
-    0 0 14px rgba(51,255,102,0.08),
+    0 0 18px rgba(51,255,102,0.08),
     inset 0 0 18px rgba(51,255,102,0.03);
+
+  position: relative;
 }
 
-/* corners */
+/* corner accents */
 .card::before,
 .card::after {
   content: "";
@@ -249,98 +238,15 @@ strong, b {
 }
 
 /* ================================
-   CRITICAL FIX: GRID LAYOUT (YOUR ISSUE)
-================================ */
-
-.masonry-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .masonry-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ================================
-   MEDIA
+   IMAGE FIX
 ================================ */
 
 .card img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
   border-radius: 0.35rem;
-}
-
-/* ================================
-   IMAGE WRAPPER
-================================ */
-
-.image-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.35rem;
-  border: 1px solid rgba(51,255,102,0.25);
-}
-
-.retro-image {
-  width: 100%;
-  display: block;
-
-  filter:
-    grayscale(1)
-    sepia(1)
-    hue-rotate(55deg)
-    saturate(8)
-    brightness(0.72)
-    contrast(1.3);
-}
-
-/* scanlines */
-.image-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 2px,
-      rgba(140,255,170,0.05) 3px,
-      transparent 4px
-    );
-
-  mix-blend-mode: screen;
-}
-
-/* ================================
-   VIDEO WRAPPER
-================================ */
-
-.video-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.35rem;
-  border: 1px solid rgba(51,255,102,0.25);
-}
-
-.retro-video {
-  width: 100%;
-  display: block;
-
-  filter:
-    grayscale(1)
-    sepia(1)
-    hue-rotate(55deg)
-    saturate(8)
-    brightness(0.7)
-    contrast(1.35);
 }
 
 /* ================================
@@ -376,6 +282,85 @@ a:hover {
 }
 
 /* ================================
+   IMAGE / VIDEO WRAPPERS
+================================ */
+
+.image-wrapper,
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(51,255,102,0.25);
+}
+
+.retro-image,
+.retro-video {
+  width: 100%;
+  display: block;
+}
+
+.retro-image {
+  filter:
+    grayscale(1)
+    sepia(1)
+    hue-rotate(55deg)
+    saturate(8)
+    brightness(0.72)
+    contrast(1.3);
+}
+
+.retro-video {
+  filter:
+    grayscale(1)
+    sepia(1)
+    hue-rotate(55deg)
+    saturate(8)
+    brightness(0.7)
+    contrast(1.35);
+}
+
+/* scanlines */
+.image-wrapper::before,
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(140,255,170,0.05) 3px,
+      transparent 4px
+    );
+
+  mix-blend-mode: screen;
+}
+
+/* ================================
+   ✅ FIXED LAYOUT (IMPORTANT)
+================================ */
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.masonry-grid .card {
+  display: block;
+}
+
+/* ================================
    FOOTER
 ================================ */
 
@@ -384,4 +369,16 @@ a:hover {
   text-align: center;
   color: var(--muted);
   padding: 2rem;
+}
+
+/* ================================
+   TEXT OVERRIDES (SAFE)
+================================ */
+
+p, li, span {
+  color: var(--muted);
+}
+
+strong, b {
+  color: var(--heading);
 }
