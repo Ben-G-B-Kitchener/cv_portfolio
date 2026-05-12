@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<!-- test -->
 <html lang="en">
+
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Projects</title>
-<script src="https://cdn.tailwindcss.com"></script>
+
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
-<body class="bg-zinc-950 text-zinc-100">
-<header class="border-b border-zinc-800 sticky top-0 bg-zinc-950/90 backdrop-blur">
-  <div class="section flex justify-between items-center py-4">
+
+<body>
+
+<header class="header">
+  <div class="section header-inner">
+
     <div>
-      <h1 class="text-xl font-bold">Ben Kitchener</h1>
-      <p class="text-xs text-zinc-400">Engineering Portfolio</p>
+      <h1 class="heading">Ben Kitchener</h1>
+      <p class="muted">Engineering Portfolio</p>
     </div>
-    <nav class="nav hidden md:block text-sm">
+
+    <nav class="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
@@ -24,66 +28,83 @@
       <a href="publications.html">Publications</a>
       <a href="contact.html">Contact</a>
     </nav>
+
   </div>
 </header>
 
 <section class="section">
-<h2 class="text-4xl font-bold mb-10">Projects</h2>
+
+<h2 class="heading">Projects</h2>
 
 <div class="masonry-grid">
 
-<div class="card text-zinc-300 leading-relaxed">
-<h3 class="text-xl font-bold">
-  <a href="https://www.ukaea.org/news/elsa-frozen-temperatures-required-for-latest-research-into-fusion-technology/" target="_blank" rel="noopener noreferrer">
+<!-- PROJECT 1 -->
+<div class="card">
+
+<h3 class="heading">
+  <a class="terminal-link"
+     href="https://www.ukaea.org/news/elsa-frozen-temperatures-required-for-latest-research-into-fusion-technology/"
+     target="_blank" rel="noopener noreferrer">
     ELSA Cryogenic Facility
   </a>
 </h3>
+
 <p>Cryogenic systems engineering for fusion research.</p>
+
 <div class="image-wrapper">
-<img
-  src="https://www.ukaea.org/wp-content/uploads/2025/12/elsa-test-rig.jpg"
-  alt="ELSA Cryogenic Facility"
-  class="retro-image"
-/>
-</div>  
+  <img src="https://www.ukaea.org/wp-content/uploads/2025/12/elsa-test-rig.jpg"
+       alt="ELSA Cryogenic Facility"
+       class="retro-image"/>
 </div>
 
-  
-<div class="card text-zinc-300 leading-relaxed">
-<h3 class="text-xl font-bold">ATLAS ITk Upgrade</h3>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="card">
+
+<h3 class="heading">ATLAS ITk Upgrade</h3>
+
 <p><b><i>Department of Physics & Astronomy, The University of Sheffield</i></b></p>
+
 <div class="image-wrapper">
-  <img
-  src="./assets/atlas_detector.jpg"
-  alt="ATLAS Detector"
-  class="retro-image"
-  />
-</div>  
-<p>Supporting the ATLAS ITk (the particle physics experiment that discovered the Higgs boson) upgrade programme at <a href="https://home.cern/">CERN 
-  (Conseil Européen pour la Recherche Nucléaire).</a>
-  My time was split between cleanroom work (wire bonding, optical microscopy and electronic module construction), precision TIG welding of narrow gauge
-  titanium tube for the ATLAS cooling system, and general instrumentation including electronic design; schematic capture and PCB layout; microcontroller
-  firmware and other <i>ad hoc software development</i> in multiple languages.
-</p>
-<p>                           
-</p>
-<div class="image-wrapper">  
-<img
-  src="./assets/rems.jpg"
-  alt="REMS"
-  class="retro-image"
-/>
-</div>  
-<p>As a side project, I designed a Remote Environment Monitoring System (REMS) for cleanroom condition monitoring utilising a wireless sensor network at 868 MHz.
-  Firmware programming in C++.
-</p>
+  <img src="./assets/atlas_detector.jpg"
+       alt="ATLAS Detector"
+       class="retro-image"/>
 </div>
 
-<div class="card text-zinc-300 leading-relaxed">
-<h3 class="text-xl font-bold mb-4">Turbine Blade Remanufacturing System</h3>
-<p>A systems-integration exercise to showcase an automated TIG welding additive manufacturing demonstrator. I developed a LabVIEW cRIO system to orchestrate several incompatible 
-control, robotic, and scanning systems into a funftional demo for an Innovate UK project.
+<p>
+Supporting the ATLAS ITk (the particle physics experiment that discovered the Higgs boson) upgrade programme at
+<a href="https://home.cern/">CERN (Conseil Européen pour la Recherche Nucléaire).</a>
+My time was split between cleanroom work (wire bonding, optical microscopy and electronic module construction),
+precision TIG welding of narrow gauge titanium tube for the ATLAS cooling system, and general instrumentation
+including electronic design; schematic capture and PCB layout; microcontroller firmware and other
+<i>ad hoc software development</i> in multiple languages.
 </p>
+
+<div class="image-wrapper">
+  <img src="./assets/rems.jpg"
+       alt="REMS"
+       class="retro-image"/>
+</div>
+
+<p>
+As a side project, I designed a Remote Environment Monitoring System (REMS) for cleanroom condition monitoring
+utilising a wireless sensor network at 868 MHz. Firmware programming in C++.
+</p>
+
+</div>
+
+<!-- PROJECT 3 -->
+<div class="card">
+
+<h3 class="heading mb-4">Turbine Blade Remanufacturing System</h3>
+
+<p>
+A systems-integration exercise to showcase an automated TIG welding additive manufacturing demonstrator.
+I developed a LabVIEW cRIO system to orchestrate several incompatible control, robotic, and scanning systems
+into a funftional demo for an Innovate UK project.
+</p>
+
 <div class="video-wrapper">
   <iframe
     class="retro-video"
@@ -95,12 +116,16 @@ control, robotic, and scanning systems into a funftional demo for an Innovate UK
     allowfullscreen>
   </iframe>
 </div>
+
 </div>
+
+</div>
+
 </section>
 
-<footer class="border-t border-zinc-900 text-center text-zinc-500 text-sm py-10">
-© 2026 Ben G. B. Kitchener
+<footer class="footer">
+© 2026 Ben Kitchener
 </footer>
-<script src="assets/script.js"></script>
+
 </body>
 </html>
