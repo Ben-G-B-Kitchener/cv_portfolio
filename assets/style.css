@@ -299,6 +299,30 @@ a:hover {
   color: #001100;
 }
 
+/* Masonry layout */
+.masonry-grid {
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+/* Prevent cards breaking across columns */
+.masonry-grid .card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .masonry-grid {
+    columns: 1;
+  }
+}
+
 /* Allow cards to use full width */
 .card p {
   max-width: none;
