@@ -10,7 +10,146 @@
 
 <body>
 
+<header class="header"><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Projects</title>
+
+<link rel="stylesheet" href="assets/style.css"/>
+</head>
+
+<body>
+
 <header class="header">
+  <div class="section header-inner">
+    <div>
+      <h1>Ben Kitchener</h1>
+      <p class="muted">Engineering Portfolio</p>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="education.html">Education</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="section">
+
+<h2>Projects</h2>
+
+<!-- ✅ FIX: proper 2-column system -->
+<div class="masonry-grid">
+
+  <!-- LEFT COLUMN -->
+  <div class="masonry-grid-column">
+
+    <div class="card">
+      <h3>
+        <a href="https://www.ukaea.org/news/elsa-frozen-temperatures-required-for-latest-research-into-fusion-technology/"
+           target="_blank" rel="noopener noreferrer">
+          ELSA Cryogenic Facility
+        </a>
+      </h3>
+
+      <p>Cryogenic systems engineering for fusion research.</p>
+
+      <div class="image-wrapper">
+        <img
+          src="https://www.ukaea.org/wp-content/uploads/2025/12/elsa-test-rig.jpg"
+          alt="ELSA Cryogenic Facility"
+          class="retro-image"
+        />
+      </div>
+    </div>
+
+    <!-- optional: move second card here if you want strict column control -->
+    <div class="card">
+      <h3>ATLAS ITk Upgrade</h3>
+
+      <p><b><i>Department of Physics & Astronomy, The University of Sheffield</i></b></p>
+
+      <div class="image-wrapper">
+        <img
+          src="./assets/atlas_detector.jpg"
+          alt="ATLAS Detector"
+          class="retro-image"
+        />
+      </div>
+
+      <p>
+        Supporting the ATLAS ITk (the particle physics experiment that discovered the Higgs boson)
+        upgrade programme at <a href="https://home.cern/">CERN (Conseil Européen pour la Recherche Nucléaire).</a>
+        My time was split between cleanroom work (wire bonding, optical microscopy and electronic module construction),
+        precision TIG welding of narrow gauge titanium tube for the ATLAS cooling system, and general instrumentation
+        including electronic design; schematic capture and PCB layout; microcontroller firmware and other
+        <i>ad hoc software development</i> in multiple languages.
+      </p>
+
+      <div class="image-wrapper">
+        <img
+          src="./assets/rems.jpg"
+          alt="REMS"
+          class="retro-image"
+        />
+      </div>
+
+      <p>
+        As a side project, I designed a Remote Environment Monitoring System (REMS) for cleanroom condition monitoring
+        utilising a wireless sensor network at 868 MHz. Firmware programming in C++.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="masonry-grid-column">
+
+    <div class="card">
+      <h3>Turbine Blade Remanufacturing System</h3>
+
+      <p>
+        A systems-integration exercise to showcase an automated TIG welding additive manufacturing demonstrator.
+        I developed a LabVIEW cRIO system to orchestrate several incompatible control, robotic, and scanning systems
+        into a funftional demo for an Innovate UK project.
+      </p>
+
+      <div class="video-wrapper">
+        <iframe
+          class="retro-video"
+          width="100%"
+          height="400"
+          src="https://www.youtube.com/embed/nxQSYscFsc8"
+          title="Turbine Blade Remanufacturing System"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+© 2026 Ben G. B. Kitchener
+</footer>
+
+<script src="assets/script.js"></script>
+
+</body>
+</html>
   <div class="section header-inner">
     <div>
       <h1>Ben Kitchener</h1>
