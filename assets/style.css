@@ -355,3 +355,22 @@ a:hover {
   color: var(--muted);
   padding: 2rem;
 }
+
+/* =========================
+   HERO LAYOUT OVERRIDE FIX
+   (must be at end of file)
+========================= */
+
+.hero-grid {
+  columns: unset;
+  display: flex;
+  gap: 2rem;
+}
+
+.hero-grid > div {
+  flex: 1;
+}
+
+.hero-grid .card {
+  height: fit-content;
+}
