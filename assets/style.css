@@ -548,6 +548,30 @@ a:hover {
   }
 }
 
+/* ================================
+   MOBILE SCOPE FIX (IMPORTANT)
+================================ */
+
+@media (max-width: 900px){
+
+  .scope-screen-panel{
+    width: 100%;
+  }
+
+  /* make scope height scale to viewport */
+  #scope{
+    height: 260px;   /* was 420px → this is the issue */
+  }
+
+  .scope-controls{
+    gap: 0.8rem;
+  }
+
+  .scope-card{
+    margin-top: 1rem;
+  }
+}
+
 /* =================================
    OSCILLOSCOPE KNOBS
 ================================= */
