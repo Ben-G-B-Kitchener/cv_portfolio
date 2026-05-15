@@ -20,13 +20,9 @@
    BASE
 ================================ */
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -94,11 +90,11 @@ body::after {
 .section {
   max-width: 1400px;
   margin: auto;
-  padding: 2rem 1.5rem; /* reduced vertical spacing */
+  padding: 2rem 1.5rem;
 }
 
 /* ================================
-   HEADER (compact + stable)
+   HEADER
 ================================ */
 
 .header {
@@ -114,8 +110,7 @@ body::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 0.6rem 0; /* compact header */
+  padding: 0.6rem 0;
 }
 
 .header h1 {
@@ -135,15 +130,8 @@ h1, h2, h3 {
   margin: 0;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 0.4rem;
-}
-
-h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.3rem;
-}
+h2 { font-size: 2rem; margin-bottom: 0.4rem; }
+h3 { font-size: 1.15rem; margin-bottom: 0.3rem; }
 
 p, li, span {
   color: var(--muted);
@@ -151,21 +139,17 @@ p, li, span {
   line-height: 1.5;
 }
 
-strong, b {
-  color: var(--heading);
-}
+strong, b { color: var(--heading); }
 
-.muted {
-  color: var(--muted);
-}
+.muted { color: var(--muted); }
 
 /* ================================
-   NAVIGATION (spaced + stable hover)
+   NAV
 ================================ */
 
 .nav {
   display: flex;
-  gap: 1.8rem; /* prevents hover clash */
+  gap: 1.8rem;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -176,7 +160,6 @@ strong, b {
   padding: 3px 0;
   color: var(--muted);
   text-decoration: none;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .nav a::before {
@@ -202,19 +185,13 @@ strong, b {
 
 .nav a:hover {
   color: var(--heading);
-  text-shadow: 0 0 6px rgba(51,255,102,0.5);
 }
 
-.nav a:hover::before {
-  opacity: 1;
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
+.nav a:hover::before { opacity: 1; }
+.nav a:hover::after { width: 100%; }
 
 /* ================================
-   CARDS (tighter + consistent spacing system)
+   CARDS
 ================================ */
 
 .card {
@@ -224,7 +201,6 @@ strong, b {
 
   padding: 1.25rem;
   width: 100%;
-
   display: block;
 
   box-shadow:
@@ -234,52 +210,21 @@ strong, b {
   position: relative;
 }
 
-/* remove margin system → replaced by flex gap */
-.card::before,
-.card::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--accent);
-}
-
-.card::before {
-  top: 8px;
-  left: 8px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.card::after {
-  bottom: 8px;
-  right: 8px;
-  border-left: none;
-  border-top: none;
-}
-
 /* ================================
-   TWO-COLUMN LAYOUT (FIXED SPACING SYSTEM)
+   GRID
 ================================ */
 
 .masonry-grid {
   display: flex;
-  gap: 1.5rem;           /* horizontal spacing */
+  gap: 1.5rem;
   align-items: flex-start;
 }
 
 .masonry-grid-column {
   flex: 1;
-  min-width: 0;
-
-  display: flex;         /* KEY FIX */
+  display: flex;
   flex-direction: column;
-  gap: 1rem;             /* vertical spacing controlled here */
-}
-
-/* IMPORTANT: no margin stacking anymore */
-.card {
-  margin: 0;
+  gap: 1rem;
 }
 
 /* ================================
@@ -289,36 +234,24 @@ strong, b {
 .card img,
 .image-wrapper img {
   width: 100%;
-  height: auto;
   display: block;
   border-radius: 0.35rem;
 }
 
 /* ================================
-   IMAGE + VIDEO WRAPPERS
+   IMAGE / VIDEO EFFECTS
 ================================ */
 
 .image-wrapper,
 .video-wrapper {
   position: relative;
   overflow: hidden;
-
   border-radius: 0.35rem;
   border: 1px solid rgba(51,255,102,0.22);
-
-  box-shadow:
-    0 0 16px rgba(51,255,102,0.14),
-    inset 0 0 18px rgba(51,255,102,0.05);
 }
 
-/* ================================
-   IMAGES
-================================ */
-
+/* IMAGE LOOK */
 .retro-image {
-  width: 100%;
-  display: block;
-
   filter:
     grayscale(0.65)
     sepia(0.45)
@@ -328,14 +261,8 @@ strong, b {
     contrast(1.18);
 }
 
-/* ================================
-   VIDEO
-================================ */
-
+/* VIDEO LOOK */
 .retro-video {
-  width: 100%;
-  display: block;
-
   filter:
     grayscale(0.7)
     sepia(0.5)
@@ -345,10 +272,7 @@ strong, b {
     contrast(1.22);
 }
 
-/* ================================
-   SCANLINES
-================================ */
-
+/* scanlines */
 .image-wrapper::before,
 .video-wrapper::before {
   content: "";
@@ -364,27 +288,9 @@ strong, b {
       rgba(140,255,170,0.05) 3px,
       transparent 4px
     );
-
-  opacity: 0.55;
-
-  z-index: 3;
 }
 
-.image-wrapper img,
-.video-wrapper iframe,
-.video-wrapper video {
-  position: relative;
-  z-index: 1;
-}
-
-.image-wrapper,
-.video-wrapper {
-  position: relative;
-}
-/* ================================
-   CRT VIGNETTE + VIDEO NOISE
-================================ */
-
+/* vignette */
 .image-wrapper::after,
 .video-wrapper::after {
   content: "";
@@ -393,48 +299,38 @@ strong, b {
   pointer-events: none;
 
   background:
-    radial-gradient(
-      ellipse at center,
+    radial-gradient(ellipse at center,
       transparent 58%,
-      rgba(0,0,0,0.24) 100%
-    );
+      rgba(0,0,0,0.24) 100%);
 }
 
-/* extra animated noise ONLY for video */
-.video-wrapper::after {
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 58%,
-      rgba(0,0,0,0.24) 100%
-    ),
-    repeating-radial-gradient(
-      circle at center,
-      rgba(255,255,255,0.018) 0px,
-      rgba(255,255,255,0.018) 1px,
-      transparent 2px,
-      transparent 5px
-    );
-
-  animation: videoNoise 0.16s infinite;
-}
-
-@keyframes videoNoise {
-  0%   { transform: translate(0px, 0px); }
-  25%  { transform: translate(-0.4px, 0.3px); }
-  50%  { transform: translate(0.3px, -0.4px); }
-  75%  { transform: translate(-0.3px, -0.3px); }
-  100% { transform: translate(0px, 0px); }
-}/* ================================
-   LINKS
+/* ================================
+   SCOPE FIX (IMPORTANT — REAL FIX)
 ================================ */
 
-a {
-  color: var(--accent);
+/* container controls height ONLY */
+.scope-screen-panel {
+  width: 100%;
+  height: 420px;
 }
 
-a:hover {
-  opacity: 0.9;
+/* canvas fills container */
+#scope {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* mobile correction */
+@media (max-width: 900px) {
+
+  .scope-screen-panel {
+    height: 260px;
+  }
+
+  .masonry-grid {
+    flex-direction: column;
+  }
 }
 
 /* ================================
@@ -449,218 +345,9 @@ a:hover {
 }
 
 /* ================================
-   SAFETY NET (REMOVE WHITE TEXT BUGS)
+   SAFETY NET
 ================================ */
 
 [class*="text-zinc"] {
   color: var(--muted) !important;
-}
-
-/* =================================
-   LARGE DESKTOP
-================================= */
-
-@media (min-width: 1600px) {
-
-  .section {
-    max-width: 1600px;
-  }
-
-  body {
-    font-size: 1.05rem;
-  }
-}
-
-/* =================================
-   LAPTOP / SMALL DESKTOP
-================================= */
-
-@media (max-width: 1200px) {
-
-  .section {
-    padding: 1.8rem 1.2rem;
-  }
-
-  .nav {
-    gap: 1.5rem;
-  }
-}
-
-/* =================================
-   TABLET
-================================= */
-
-@media (max-width: 900px) {
-
-  .masonry-grid {
-    flex-direction: column;
-  }
-
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .nav {
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-}
-
-/* =================================
-   MOBILE
-================================= */
-
-@media (max-width: 600px) {
-
-  .section {
-    padding: 1.25rem 1rem;
-  }
-
-  body {
-    font-size: 0.95rem;
-  }
-
-  .card {
-    padding: 1rem;
-  }
-
-  .header h1 {
-    font-size: 1rem;
-  }
-
-  .nav {
-    gap: 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  h2 {
-    font-size: 1.4rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-  }
-}
-
-/* ================================
-   MOBILE SCOPE FIX (IMPORTANT)
-================================ */
-
-@media (max-width: 900px){
-
-  .scope-screen-panel{
-    width: 100%;
-  }
-
-  /* make scope height scale to viewport */
-  #scope{
-    height: 260px;   /* was 420px → this is the issue */
-  }
-
-  .scope-controls{
-    gap: 0.8rem;
-  }
-
-  .scope-card{
-    margin-top: 1rem;
-  }
-}
-
-/* =================================
-   OSCILLOSCOPE KNOBS
-================================= */
-
-.scope-controls{
-  display:flex;
-  flex-direction:column;
-  gap:2rem;
-}
-
-.knob-group{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0.75rem;
-}
-
-.knob-label{
-  color:var(--heading);
-  font-size:0.85rem;
-  letter-spacing:0.08em;
-}
-
-.knob-readout{
-  color:var(--muted);
-  font-size:0.85rem;
-}
-
-/* hidden slider track */
-
-.knob{
-  appearance:none;
-  -webkit-appearance:none;
-
-  width:80px;
-  height:80px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(circle at 35% 35%,
-      rgba(120,255,140,0.18),
-      rgba(20,40,20,0.95));
-
-  border:1px solid rgba(51,255,102,0.25);
-
-  box-shadow:
-    inset 0 0 12px rgba(255,255,255,0.05),
-    inset 0 0 18px rgba(0,0,0,0.8),
-    0 0 18px rgba(51,255,102,0.08);
-
-  cursor:pointer;
-
-  position:relative;
-}
-
-/* remove normal thumb */
-
-.knob::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  appearance:none;
-
-  width:0;
-  height:0;
-}
-
-.knob::-moz-range-thumb{
-  width:0;
-  height:0;
-  border:none;
-}
-
-/* fake indicator line */
-
-.knob::before{
-  content:"";
-  position:absolute;
-
-  width:4px;
-  height:26px;
-
-  background:#33ff66;
-
-  top:10px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  border-radius:2px;
-
-  box-shadow:0 0 8px rgba(51,255,102,0.5);
 }
