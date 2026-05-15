@@ -6,7 +6,6 @@
 <title>Home</title>
 
 <link rel="stylesheet" href="assets/style.css"/>
-
 </head>
 
 <body>
@@ -33,12 +32,13 @@
 </header>
 
 
-<!-- HERO -->
+<!-- HERO (NOW CSS CONTROLLED) -->
 <section class="section">
 
-  <div style="display:flex; gap:2.5rem; flex-wrap:wrap; align-items:center;">
+  <div class="hero-layout">
 
-    <div style="flex:1; min-width:320px;">
+    <!-- TEXT -->
+    <div class="hero-text">
 
       <p class="muted">
         Instrumentation • Control Systems • Electronics • Software
@@ -58,7 +58,8 @@
 
     </div>
 
-    <div style="flex:0 0 400px;">
+    <!-- IMAGE -->
+    <div class="hero-image">
       <div class="card" style="padding:1rem;">
         <img src="./assets/scope_torus.jpg" alt="Scope Torus">
       </div>
@@ -70,13 +71,12 @@
 
 
 <!-- OSCILLOSCOPE -->
-<section class="section scope-card scope-theme">
+<section class="section scope-card">
 
   <div class="card">
 
     <h3 class="heading">OSCILLOSCOPE</h3>
 
-    <!-- FIXED LAYOUT: desktop row, mobile column -->
     <div class="scope-wrapper">
 
       <!-- SCREEN -->
@@ -85,7 +85,7 @@
       </div>
 
       <!-- CONTROLS -->
-      <div class="scope-controls scope-ui">
+      <div class="scope-controls">
 
         <div class="control-group">
           <label>Waveform</label>
