@@ -10,9 +10,14 @@
 <style>
 
 /* ================================
-   OSCILLOSCOPE MODULE
+   OSCILLOSCOPE WRAPPER CARD
 ================================ */
 
+.scope-card{
+  margin-top: 2rem;
+}
+
+/* full scope layout */
 .scope-wrapper{
   display:flex;
   gap:2rem;
@@ -20,6 +25,7 @@
   flex-wrap:wrap;
 }
 
+/* SCREEN */
 .scope-screen-panel{
   position:relative;
   flex: 1 1 700px;
@@ -37,9 +43,9 @@
   display:block;
 }
 
-/* controls */
+/* CONTROLS PANEL */
 .scope-controls{
-  flex: 0 0 280px;
+  flex: 0 0 300px;
 
   display:flex;
   flex-direction:column;
@@ -51,12 +57,14 @@
   background:rgba(8,20,8,0.4);
 }
 
+/* control block */
 .control-group{
   display:flex;
   flex-direction:column;
   gap:0.4rem;
 }
 
+/* labels */
 label{
   font-size:0.8rem;
   color:#4fbf63;
@@ -64,11 +72,28 @@ label{
   letter-spacing:0.08em;
 }
 
-.value{
-  font-size:0.75rem;
-  color:#7dff8a;
+/* VALUE DISPLAY (7 SEG STYLE) */
+.value-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
+.value{
+  font-family: "Courier New", monospace;
+  color:#33ff66;
+  background: rgba(0, 20, 0, 0.6);
+  border:1px solid rgba(51,255,102,0.25);
+  padding:2px 6px;
+  border-radius:3px;
+
+  letter-spacing:0.15em;
+
+  text-shadow:
+    0 0 6px rgba(51,255,102,0.8);
+}
+
+/* sliders */
 input[type="range"]{
   -webkit-appearance:none;
   appearance:none;
@@ -89,6 +114,20 @@ input[type="range"]::-webkit-slider-thumb{
   cursor:pointer;
 }
 
+/* WAVEFORM SELECTOR */
+select{
+  background:rgba(0, 25, 0, 0.8);
+  color:#33ff66;
+  border:1px solid rgba(51,255,102,0.3);
+  padding:6px;
+  border-radius:4px;
+
+  font-family: "Courier New", monospace;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  outline:none;
+}
+
 /* mobile */
 @media (max-width: 900px){
   .scope-wrapper{
@@ -106,7 +145,6 @@ input[type="range"]::-webkit-slider-thumb{
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="section header-inner">
 
@@ -128,12 +166,12 @@ input[type="range"]::-webkit-slider-thumb{
   </div>
 </header>
 
+
 <!-- HERO -->
 <section class="section">
 
   <div style="display:flex; gap:2.5rem; flex-wrap:wrap; align-items:center;">
 
-    <!-- LEFT TEXT -->
     <div style="flex:1; min-width:320px;">
 
       <p class="muted">
@@ -154,7 +192,6 @@ input[type="range"]::-webkit-slider-thumb{
 
     </div>
 
-    <!-- RIGHT IMAGE (RESTORED) -->
     <div style="flex:0 0 280px;">
       <div class="card" style="padding:1rem;">
         <img src="./assets/scope_torus.jpg" alt="Scope Torus">
@@ -165,42 +202,60 @@ input[type="range"]::-webkit-slider-thumb{
 
 </section>
 
+
 <!-- OSCILLOSCOPE -->
-<section class="section">
+<section class="section scope-card">
 
-  <div class="scope-wrapper">
+  <div class="card">
 
-    <div class="scope-screen-panel">
-      <canvas id="scope"></canvas>
-    </div>
+    <h3 class="heading">OSCILLOSCOPE</h3>
 
-    <div class="scope-controls">
+    <div class="scope-wrapper">
 
-      <div class="control-group">
-        <label>Waveform</label>
-        <select id="wave">
-          <option value="sine">Sine</option>
-          <option value="square">Square</option>
-          <option value="triangle">Triangle</option>
-        </select>
+      <!-- SCREEN -->
+      <div class="scope-screen-panel">
+        <canvas id="scope"></canvas>
       </div>
 
-      <div class="control-group">
-        <label>Frequency (Hz)</label>
-        <input id="freq" type="range" min="1" max="50" value="10">
-        <div class="value" id="freqVal"></div>
-      </div>
+      <!-- CONTROLS -->
+      <div class="scope-controls">
 
-      <div class="control-group">
-        <label>Amplitude (V/div)</label>
-        <input id="amp" type="range" min="1" max="10" value="4">
-        <div class="value" id="ampVal"></div>
-      </div>
+        <div class="control-group">
+          <label>Waveform</label>
+          <select id="wave">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </div>
 
-      <div class="control-group">
-        <label>Timebase (ms/div)</label>
-        <input id="time" type="range" min="1" max="20" value="8">
-        <div class="value" id="timeVal"></div>
+        <div class="control-group">
+          <label>Frequency (Hz)</label>
+          <input id="freq" type="range" min="1" max="50" value="10">
+          <div class="value-row">
+            <span></span>
+            <span class="value" id="freqVal"></span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Amplitude (V/div)</label>
+          <input id="amp" type="range" min="1" max="10" value="4">
+          <div class="value-row">
+            <span></span>
+            <span class="value" id="ampVal"></span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>Timebase (ms/div)</label>
+          <input id="time" type="range" min="1" max="20" value="8">
+          <div class="value-row">
+            <span></span>
+            <span class="value" id="timeVal"></span>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -209,13 +264,15 @@ input[type="range"]::-webkit-slider-thumb{
 
 </section>
 
+
 <footer class="footer">
   © 2026 Ben G. B. Kitchener
 </footer>
 
+
 <script>
 
-/* scope logic unchanged */
+/* unchanged scope engine */
 const canvas = document.getElementById("scope");
 const ctx = canvas.getContext("2d");
 
@@ -294,6 +351,16 @@ function draw(){
 }
 
 draw();
+
+/* labels */
+function updateLabels(){
+  freqVal.textContent = `${freq.value} Hz`;
+  ampVal.textContent = `${amp.value} V/div`;
+  timeVal.textContent = `${time.value} ms/div`;
+}
+
+[freq,amp,time].forEach(el=>el.addEventListener("input", updateLabels));
+updateLabels();
 
 </script>
 
