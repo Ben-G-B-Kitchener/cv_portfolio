@@ -10,101 +10,124 @@
 <style>
 
 /* ================================
-   VIRTUAL OSCILLOSCOPE PANEL
+   OSCILLOSCOPE LAYOUT (CLEAN)
 ================================ */
 
 .scope-wrapper{
+  display:flex;
+  gap:2rem;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+
+/* SCREEN PANEL */
+.scope-screen-panel{
   position:relative;
-  width:100%;
-  max-width:1100px;
-  margin:auto;
+  flex: 1 1 700px;
+  max-width: 900px;
+
+  background:#000;
+  border:1px solid rgba(51,255,102,0.25);
+  border-radius:6px;
+  box-shadow: 0 0 20px rgba(51,255,102,0.12);
 }
 
-/* SVG faceplate */
-.scope-faceplate{
+/* CANVAS */
+#scope{
   width:100%;
-  height:auto;
+  height:420px;
   display:block;
 }
 
-/* CRT screen overlay */
-.scope-screen{
-  position:absolute;
-  top:18%;
-  left:6.5%;
-  width:58%;
-  height:45%;
-  pointer-events:none;
+/* CONTROL COLUMN */
+.scope-controls{
+  flex: 0 0 260px;
 
-  border-radius:4px;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+
+  padding:1rem;
+  border:1px solid rgba(51,255,102,0.15);
+  border-radius:6px;
+  background:rgba(8,20,8,0.4);
 }
 
-/* knob overlay layer */
-.scope-ui{
-  position:absolute;
-  inset:0;
+/* LABELS */
+.control-group{
+  display:flex;
+  flex-direction:column;
+  gap:0.4rem;
 }
 
-/* knob positioning zones (tweakable) */
-.knob{
-  position:absolute;
-  width:70px;
-  text-align:center;
-}
-
-/* hide ugly slider track */
-.knob input[type="range"]{
-  -webkit-appearance:none;
-  appearance:none;
-  width:60px;
-  background:transparent;
-}
-
-/* knob styling */
-.knob input[type="range"]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  appearance:none;
-
-  width:26px;
-  height:26px;
-  border-radius:50%;
-
-  background:#33ff66;
-  border:2px solid #081408;
-
-  box-shadow:
-    0 0 10px rgba(51,255,102,0.5),
-    inset 0 0 6px rgba(0,0,0,0.6);
-
-  cursor:pointer;
-}
-
-.knob input[type="range"]::-moz-range-thumb{
-  width:26px;
-  height:26px;
-  border-radius:50%;
-  background:#33ff66;
-  border:2px solid #081408;
-  cursor:pointer;
-}
-
-/* labels */
-.knob label{
-  display:block;
-  font-size:0.7rem;
+.control-group label{
+  font-size:0.8rem;
   color:#4fbf63;
-  margin-top:6px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
 }
 
-.knob span{
-  font-size:0.7rem;
+/* SLIDERS (GREEN TERMINAL STYLE) */
+input[type="range"]{
+  -webkit-appearance:none;
+  appearance:none;
+
+  width:100%;
+  height:4px;
+
+  background:rgba(51,255,102,0.25);
+  border-radius:2px;
+  outline:none;
+}
+
+/* track fill */
+input[type="range"]::-webkit-slider-runnable-track{
+  height:4px;
+  background:rgba(51,255,102,0.25);
+}
+
+/* thumb */
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+
+  width:16px;
+  height:16px;
+  border-radius:50%;
+
+  background:#33ff66;
+  border:1px solid #081408;
+
+  box-shadow:0 0 8px rgba(51,255,102,0.5);
+
+  cursor:pointer;
+  margin-top:-6px;
+}
+
+input[type="range"]::-moz-range-thumb{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#33ff66;
+  border:1px solid #081408;
+  cursor:pointer;
+}
+
+/* value text */
+.value{
+  font-size:0.75rem;
   color:#7dff8a;
 }
 
-/* knob positions (based on faceplate layout) */
-.k-freq{ top:62%; left:70%; }
-.k-amp{ top:62%; left:80%; }
-.k-time{ top:62%; left:90%; }
+/* MOBILE STACK */
+@media (max-width: 900px){
+  .scope-wrapper{
+    flex-direction:column;
+  }
+
+  .scope-controls{
+    width:100%;
+  }
+}
 
 </style>
 
@@ -134,86 +157,34 @@
 </header>
 
 
-<!-- HERO -->
-<section class="section">
-
-  <div style="display:flex; gap:2.5rem; flex-wrap:wrap; align-items:center;">
-
-    <div style="flex:1; min-width:320px;">
-
-      <p class="muted">
-        Instrumentation • Control Systems • Electronics • Software
-      </p>
-
-      <h2 class="heading hero-title">
-        Engineering for Advanced Research Systems
-      </h2>
-
-      <p class="text">
-        Senior Electronics Engineer working on fusion technology, superconductor test rigs, and novel scientific instrumentation.
-      </p>
-
-      <p class="muted">
-        <i><b>--- Website under construction ---</b></i>
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- OSCILLOSCOPE -->
 <section class="section">
 
   <div class="scope-wrapper">
 
-    <!-- VECTOR FACEPLATE -->
-    <svg class="scope-faceplate" viewBox="0 0 1200 650">
+    <!-- SCREEN -->
+    <div class="scope-screen-panel">
+      <canvas id="scope"></canvas>
+    </div>
 
-      <!-- body -->
-      <rect x="10" y="10" width="1180" height="630" rx="18"
-            fill="#050805" stroke="#33ff66" stroke-opacity="0.25"/>
+    <!-- CONTROLS -->
+    <div class="scope-controls">
 
-      <!-- screen bezel -->
-      <rect x="70" y="90" width="700" height="420" rx="10"
-            fill="#000" stroke="#33ff66" stroke-opacity="0.25"/>
-
-      <!-- screen label -->
-      <text x="80" y="70" fill="#4fbf63" font-size="18">OSCILLOSCOPE DISPLAY</text>
-
-      <!-- decorative ticks -->
-      <g stroke="#33ff66" stroke-opacity="0.15">
-        <line x1="850" y1="120" x2="1150" y2="120"/>
-        <line x1="850" y1="180" x2="1150" y2="180"/>
-        <line x1="850" y1="240" x2="1150" y2="240"/>
-      </g>
-
-    </svg>
-
-    <!-- CRT CANVAS -->
-    <canvas id="scope" width="700" height="420" class="scope-screen"></canvas>
-
-    <!-- UI KNOBS -->
-    <div class="scope-ui">
-
-      <div class="knob k-freq">
-        <input type="range" id="freq" min="1" max="20" value="5">
-        <label>FREQ</label>
-        <span>Hz</span>
+      <div class="control-group">
+        <label>Frequency (Hz)</label>
+        <input id="freq" type="range" min="1" max="50" value="10">
+        <div class="value" id="freqVal">10 Hz</div>
       </div>
 
-      <div class="knob k-amp">
-        <input type="range" id="amp" min="1" max="10" value="5">
-        <label>VOLTS/DIV</label>
-        <span>V</span>
+      <div class="control-group">
+        <label>Amplitude (V/div)</label>
+        <input id="amp" type="range" min="1" max="10" value="4">
+        <div class="value" id="ampVal">4 V/div</div>
       </div>
 
-      <div class="knob k-time">
-        <input type="range" id="timebase" min="1" max="20" value="10">
-        <label>TIME</label>
-        <span>ms</span>
+      <div class="control-group">
+        <label>Timebase (ms/div)</label>
+        <input id="time" type="range" min="1" max="20" value="8">
+        <div class="value" id="timeVal">8 ms/div</div>
       </div>
 
     </div>
@@ -233,39 +204,53 @@
 const canvas = document.getElementById("scope");
 const ctx = canvas.getContext("2d");
 
+function resize(){
+  canvas.width = canvas.clientWidth;
+  canvas.height = canvas.clientHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
 const freq = document.getElementById("freq");
 const amp = document.getElementById("amp");
-const time = document.getElementById("timebase");
+const time = document.getElementById("time");
+
+const freqVal = document.getElementById("freqVal");
+const ampVal = document.getElementById("ampVal");
+const timeVal = document.getElementById("timeVal");
 
 let phase = 0;
 
 function grid(){
-
   ctx.strokeStyle = "rgba(51,255,102,0.08)";
-  for(let i=0;i<canvas.width;i+=40){
+  ctx.lineWidth = 1;
+
+  const step = 40;
+
+  for(let x=0;x<canvas.width;x+=step){
     ctx.beginPath();
-    ctx.moveTo(i,0);
-    ctx.lineTo(i,canvas.height);
+    ctx.moveTo(x,0);
+    ctx.lineTo(x,canvas.height);
     ctx.stroke();
   }
 
-  for(let j=0;j<canvas.height;j+=40){
+  for(let y=0;y<canvas.height;y+=step){
     ctx.beginPath();
-    ctx.moveTo(0,j);
-    ctx.lineTo(canvas.width,j);
+    ctx.moveTo(0,y);
+    ctx.lineTo(canvas.width,y);
     ctx.stroke();
   }
 }
 
 function draw(){
 
-  ctx.fillStyle="#000";
+  ctx.fillStyle = "#000";
   ctx.fillRect(0,0,canvas.width,canvas.height);
 
   grid();
 
   const f = Number(freq.value);
-  const a = Number(amp.value)*10;
+  const a = Number(amp.value) * 20;
   const t = Number(time.value);
 
   ctx.beginPath();
@@ -274,23 +259,36 @@ function draw(){
 
     const y =
       canvas.height/2 +
-      Math.sin((x*0.002*f*t)+phase)*a;
+      Math.sin((x * 0.003 * f * t) + phase) * a;
 
-    x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
   }
 
-  ctx.strokeStyle="#33ff66";
-  ctx.shadowColor="#33ff66";
-  ctx.shadowBlur=10;
-  ctx.lineWidth=2;
+  ctx.strokeStyle = "#33ff66";
+  ctx.shadowColor = "#33ff66";
+  ctx.shadowBlur = 8;
+  ctx.lineWidth = 2;
   ctx.stroke();
 
-  phase += 0.03;
+  phase += 0.04;
 
   requestAnimationFrame(draw);
 }
 
 draw();
+
+/* live labels */
+function updateLabels(){
+  freqVal.textContent = `${freq.value} Hz`;
+  ampVal.textContent = `${amp.value} V/div`;
+  timeVal.textContent = `${time.value} ms/div`;
+}
+
+[freq,amp,time].forEach(el=>{
+  el.addEventListener("input", updateLabels);
+});
+
+updateLabels();
 
 </script>
 
