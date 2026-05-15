@@ -509,3 +509,32 @@ select option {
     max-width: 1600px;
   }
 }
+
+/* ================================
+   OSCILLOSCOPE HARD FIX (FORCE LAYOUT)
+================================ */
+
+.scope-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.scope-screen-panel {
+  flex: 1 1 70%;
+  min-width: 0;
+}
+
+.scope-controls {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
+/* canvas must NOT collapse in flex layouts */
+#scope {
+  width: 100% !important;
+  height: 420px !important;
+  display: block;
+}
