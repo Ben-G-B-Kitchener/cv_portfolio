@@ -547,3 +547,96 @@ a:hover {
     font-size: 1rem;
   }
 }
+
+/* =================================
+   OSCILLOSCOPE KNOBS
+================================= */
+
+.scope-controls{
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+}
+
+.knob-group{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.75rem;
+}
+
+.knob-label{
+  color:var(--heading);
+  font-size:0.85rem;
+  letter-spacing:0.08em;
+}
+
+.knob-readout{
+  color:var(--muted);
+  font-size:0.85rem;
+}
+
+/* hidden slider track */
+
+.knob{
+  appearance:none;
+  -webkit-appearance:none;
+
+  width:80px;
+  height:80px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(circle at 35% 35%,
+      rgba(120,255,140,0.18),
+      rgba(20,40,20,0.95));
+
+  border:1px solid rgba(51,255,102,0.25);
+
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,0.05),
+    inset 0 0 18px rgba(0,0,0,0.8),
+    0 0 18px rgba(51,255,102,0.08);
+
+  cursor:pointer;
+
+  position:relative;
+}
+
+/* remove normal thumb */
+
+.knob::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+
+  width:0;
+  height:0;
+}
+
+.knob::-moz-range-thumb{
+  width:0;
+  height:0;
+  border:none;
+}
+
+/* fake indicator line */
+
+.knob::before{
+  content:"";
+  position:absolute;
+
+  width:4px;
+  height:26px;
+
+  background:#33ff66;
+
+  top:10px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:2px;
+
+  box-shadow:0 0 8px rgba(51,255,102,0.5);
+}
