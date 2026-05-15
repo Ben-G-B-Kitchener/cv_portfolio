@@ -9,74 +9,125 @@
 
 <style>
 
-/* =========================
-   OSCILLOSCOPE
-========================= */
+/* =================================
+   INLINE OSCILLOSCOPE WIDGET STYLE
+================================= */
 
-.scope-container {
-  margin-top: 1.5rem;
-}
-
-.scope-screen {
-  width: 100%;
-  height: 420px;
-
-  background: #050805;
-
-  border: 1px solid rgba(51,255,102,0.22);
-  border-radius: 0.35rem;
+.scope-shell{
+  background:#061106;
+  border:1px solid rgba(51,255,102,0.25);
+  border-radius:0.35rem;
+  padding:1.5rem;
 
   box-shadow:
-    0 0 16px rgba(51,255,102,0.10),
-    inset 0 0 18px rgba(51,255,102,0.05);
-
-  display: block;
+    inset 0 0 25px rgba(51,255,102,0.06),
+    0 0 25px rgba(51,255,102,0.08);
 }
 
-/* controls */
-
-.scope-controls {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-
-  margin-top: 1.5rem;
+.scope-grid{
+  display:grid;
+  grid-template-columns: 1fr 260px;
+  gap:2rem;
+  align-items:start;
 }
 
-.scope-control {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  min-width: 220px;
-}
-
-.scope-control label {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.scope-control input,
-.scope-control select {
-  width: 100%;
-}
-
-.scope-value {
-  color: var(--heading);
-  font-size: 0.9rem;
-}
-
-/* mobile */
-
-@media (max-width: 700px) {
-
-  .scope-screen {
-    height: 300px;
+@media (max-width: 900px){
+  .scope-grid{
+    grid-template-columns:1fr;
   }
+}
 
-  .scope-controls {
-    gap: 1rem;
-  }
+.scope-panel{
+  display:flex;
+  flex-direction:column;
+  gap:1.25rem;
+}
+
+.scope-readout{
+  font-size:0.9rem;
+  color:var(--muted);
+  border:1px solid rgba(51,255,102,0.2);
+  padding:0.75rem;
+  background:rgba(0,0,0,0.25);
+}
+
+.scope-controls{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.scope-controls label{
+  display:flex;
+  flex-direction:column;
+  gap:0.45rem;
+  color:var(--heading);
+  font-size:0.9rem;
+}
+
+canvas{
+  width:100%;
+  background:#000;
+  border:1px solid rgba(51,255,102,0.2);
+  border-radius:0.35rem;
+  display:block;
+}
+
+/* =========================
+   TERMINAL SLIDERS
+========================= */
+
+input[type="range"]{
+  width:100%;
+  appearance:none;
+  -webkit-appearance:none;
+
+  height:6px;
+
+  background:rgba(51,255,102,0.12);
+  border:1px solid rgba(51,255,102,0.25);
+  border-radius:999px;
+
+  outline:none;
+}
+
+/* chrome */
+
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+
+  width:18px;
+  height:18px;
+
+  border-radius:2px;
+
+  background:#33ff66;
+  border:1px solid rgba(255,255,255,0.15);
+
+  cursor:pointer;
+
+  box-shadow:
+    0 0 10px rgba(51,255,102,0.45),
+    0 0 18px rgba(51,255,102,0.25);
+}
+
+/* firefox */
+
+input[type="range"]::-moz-range-thumb{
+  width:18px;
+  height:18px;
+
+  border:none;
+  border-radius:2px;
+
+  background:#33ff66;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 0 10px rgba(51,255,102,0.45),
+    0 0 18px rgba(51,255,102,0.25);
 }
 
 </style>
@@ -85,7 +136,7 @@
 
 <body>
 
-<header class="header">
+<header class="header compact-header">
   <div class="section header-inner">
 
     <div>
@@ -105,6 +156,7 @@
 
   </div>
 </header>
+
 
 <!-- HERO -->
 <section class="section">
@@ -133,7 +185,7 @@
     </div>
 
     <!-- RIGHT -->
-    <div style="flex:0 0 280px;">
+    <div style="flex:0 0 360px;">
       <div class="card" style="padding:1rem;">
         <img src="./assets/scope_torus.jpg" alt="Scope Torus">
       </div>
@@ -143,60 +195,56 @@
 
 </section>
 
+
 <!-- OSCILLOSCOPE -->
-<section class="section" style="padding-top:1.5rem;">
+<section class="section" style="padding-top:1rem;">
 
   <div class="card">
 
-    <h3 class="heading">OSCILLOSCOPE</h3>
+    <h3 class="heading" style="margin-bottom:1.5rem;">
+      OSCILLOSCOPE
+    </h3>
 
-    <div class="scope-container">
+    <div class="scope-shell">
 
-      <canvas id="scope" class="scope-screen"></canvas>
+      <div class="scope-grid">
 
-      <!-- CONTROLS -->
-      <div class="scope-controls">
+        <!-- DISPLAY -->
+        <div class="scope-panel">
 
-        <div class="scope-control">
-          <label>Frequency (Hz)</label>
+          <canvas id="scope" width="900" height="420"></canvas>
 
-          <input
-            id="freq"
-            type="range"
-            min="1"
-            max="50"
-            value="5"
-          >
-
-          <div class="scope-value" id="freqVal">
-            5 Hz
+          <div class="scope-readout">
+            SIGNAL GENERATOR ACTIVE • SYNTHETIC TEST WAVEFORM
           </div>
+
         </div>
 
-        <div class="scope-control">
-          <label>Amplitude</label>
+        <!-- CONTROLS -->
+        <div class="scope-controls">
 
-          <input
-            id="amp"
-            type="range"
-            min="1"
-            max="100"
-            value="50"
-          >
+          <label>
+            Frequency
+            <input
+              type="range"
+              id="freq"
+              min="1"
+              max="20"
+              value="5"
+            >
+          </label>
 
-          <div class="scope-value" id="ampVal">
-            50%
-          </div>
-        </div>
+          <label>
+            Amplitude
+            <input
+              type="range"
+              id="amp"
+              min="10"
+              max="120"
+              value="60"
+            >
+          </label>
 
-        <div class="scope-control">
-          <label>Waveform</label>
-
-          <select id="waveType">
-            <option value="sine">Sine</option>
-            <option value="square">Square</option>
-            <option value="saw">Sawtooth</option>
-          </select>
         </div>
 
       </div>
@@ -207,132 +255,92 @@
 
 </section>
 
+
 <footer class="footer">
   © 2026 Ben G. B. Kitchener
 </footer>
 
-<script>
 
-/* =========================
-   CANVAS SETUP
-========================= */
+<script>
 
 const canvas = document.getElementById("scope");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
-}
-
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-
-/* =========================
-   CONTROLS
-========================= */
-
 const freqSlider = document.getElementById("freq");
-const ampSlider = document.getElementById("amp");
-const waveType = document.getElementById("waveType");
+const ampSlider  = document.getElementById("amp");
 
-const freqVal = document.getElementById("freqVal");
-const ampVal = document.getElementById("ampVal");
+let phase = 0;
 
-/* =========================
-   WAVE FUNCTIONS
-========================= */
-
-function waveform(type, x, freq, amp) {
-
-  const t = x * freq;
-
-  if (type === "sine") {
-    return Math.sin(t * Math.PI * 2) * amp;
-  }
-
-  if (type === "square") {
-    return (Math.sin(t * Math.PI * 2) > 0 ? 1 : -1) * amp;
-  }
-
-  if (type === "saw") {
-    return (2 * (t - Math.floor(t + 0.5))) * amp;
-  }
-
-  return 0;
-}
-
-/* =========================
-   GRID
-========================= */
-
-function drawGrid() {
+function drawGrid(){
 
   ctx.strokeStyle = "rgba(51,255,102,0.08)";
   ctx.lineWidth = 1;
 
-  const spacing = 40;
-
-  for (let x = 0; x < canvas.width; x += spacing) {
-
+  for(let x=0; x<canvas.width; x+=40){
     ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
+    ctx.moveTo(x,0);
+    ctx.lineTo(x,canvas.height);
     ctx.stroke();
   }
 
-  for (let y = 0; y < canvas.height; y += spacing) {
-
+  for(let y=0; y<canvas.height; y+=40){
     ctx.beginPath();
-    ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
+    ctx.moveTo(0,y);
+    ctx.lineTo(canvas.width,y);
     ctx.stroke();
   }
 }
 
-/* =========================
-   DRAW LOOP
-========================= */
+function drawNoise(){
 
-function draw() {
+  for(let i=0;i<2500;i++){
 
-  const freq = parseFloat(freqSlider.value);
-  const amp = parseFloat(ampSlider.value) / 50;
-  const type = waveType.value;
+    ctx.fillStyle = `rgba(51,255,102,${Math.random()*0.03})`;
 
-  freqVal.textContent = freq + " Hz";
-  ampVal.textContent = ampSlider.value + "%";
+    ctx.fillRect(
+      Math.random()*canvas.width,
+      Math.random()*canvas.height,
+      1,
+      1
+    );
+  }
+}
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function draw(){
+
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
   drawGrid();
+  drawNoise();
+
+  const freq = Number(freqSlider.value);
+  const amp  = Number(ampSlider.value);
+
+  ctx.beginPath();
+
+  for(let x=0;x<canvas.width;x++){
+
+    const y =
+      canvas.height/2 +
+      Math.sin((x*0.01*freq)+phase) * amp;
+
+    if(x===0){
+      ctx.moveTo(x,y);
+    }else{
+      ctx.lineTo(x,y);
+    }
+  }
 
   ctx.strokeStyle = "#33ff66";
   ctx.lineWidth = 2;
 
-  ctx.shadowBlur = 10;
-  ctx.shadowColor = "rgba(51,255,102,0.5)";
-
-  ctx.beginPath();
-
-  const mid = canvas.height / 2;
-
-  for (let x = 0; x < canvas.width; x++) {
-
-    const normX = x / canvas.width;
-
-    const y =
-      mid -
-      waveform(type, normX * 10, freq, amp) * (canvas.height / 3);
-
-    if (x === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
-    }
-  }
+  ctx.shadowColor = "#33ff66";
+  ctx.shadowBlur = 12;
 
   ctx.stroke();
+
+  phase += 0.05;
 
   requestAnimationFrame(draw);
 }
