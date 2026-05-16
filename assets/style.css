@@ -573,3 +573,78 @@ select option {
     width: 100%;
   }
 }
+
+/* ================================
+   PROJECT MEDIA CRT MASK FIX
+================================ */
+
+.image-wrapper,
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(51,255,140,0.22);
+  background: #000;
+}
+
+.image-wrapper img,
+.video-wrapper iframe,
+.video-wrapper video {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: block;
+}
+
+/* stronger green grading */
+.image-wrapper img,
+.video-wrapper iframe,
+.video-wrapper video {
+  filter:
+    grayscale(0.7)
+    sepia(0.45)
+    hue-rotate(45deg)
+    saturate(2.6)
+    brightness(0.82)
+    contrast(1.2);
+}
+
+/* scanline overlay */
+.image-wrapper::before,
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      rgba(140,255,170,0.06) 3px,
+      transparent 4px
+    );
+
+  opacity: 0.65;
+  z-index: 3;
+}
+
+/* green screen tint + vignette */
+.image-wrapper::after,
+.video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(51,255,102,0.08) 0%,
+      rgba(0,0,0,0.18) 75%,
+      rgba(0,0,0,0.38) 100%
+    );
+
+  z-index: 4;
+}
