@@ -44,89 +44,105 @@
 
 </section>
 
-<!-- X-Y OSCILLOSCOPE -->
-<section class="section scope-card">
+<section class="section">
 
-  <div class="card">
+  <div class="masonry-grid">
 
-    <h3>X-Y OSCILLOSCOPE</h3>
+    <div class="masonry-grid-column">
 
-    <div class="scope-wrapper">
+      <!-- X-Y OSCILLOSCOPE -->
+      <div class="card scope-card">
 
-      <!-- SCREEN -->
-      <div class="scope-screen-panel">
-        <canvas id="xyScope"></canvas>
-      </div>
+        <h3>X-Y OSCILLOSCOPE</h3>
 
-      <!-- CONTROLS -->
-      <div class="scope-controls">
+        <div class="scope-wrapper">
 
-        <!-- X SIGNAL -->
-        <div class="control-group">
-          <label>X Frequency (Hz)</label>
-          <input id="xFreq" type="range" min="1" max="20" value="2">
-          <div class="value-row">
-            <span></span>
-            <span class="value" id="xFreqVal"></span>
+          <!-- SCREEN -->
+          <div class="scope-screen-panel">
+            <canvas id="xyScope"></canvas>
           </div>
-        </div>
 
-        <div class="control-group">
-          <label>X Amplitude</label>
-          <input id="xAmp" type="range" min="1" max="10" value="1">
-          <div class="value-row">
-            <span></span>
-            <span class="value" id="xAmpVal"></span>
-          </div>
-        </div>
+          <!-- CONTROLS -->
+          <div class="scope-controls">
 
-        <!-- Y SIGNAL -->
-        <div class="control-group">
-          <label>Y Frequency (Hz)</label>
-          <input id="yFreq" type="range" min="1" max="20" value="4">
-          <div class="value-row">
-            <span></span>
-            <span class="value" id="yFreqVal"></span>
-          </div>
-        </div>
+            <!-- X SIGNAL -->
+            <div class="control-group">
+              <label>X Frequency (Hz)</label>
+              <input id="xFreq" type="range" min="1" max="20" value="2">
+              <div class="value-row">
+                <span></span>
+                <span class="value" id="xFreqVal"></span>
+              </div>
+            </div>
 
-        <div class="control-group">
-          <label>Y Amplitude</label>
-          <input id="yAmp" type="range" min="1" max="10" value="1">
-          <div class="value-row">
-            <span></span>
-            <span class="value" id="yAmpVal"></span>
-          </div>
-        </div>
+            <div class="control-group">
+              <label>X Amplitude</label>
+              <input id="xAmp" type="range" min="1" max="10" value="1">
+              <div class="value-row">
+                <span></span>
+                <span class="value" id="xAmpVal"></span>
+              </div>
+            </div>
 
-        <!-- PHASE -->
-        <div class="control-group">
-          <label>Phase Offset</label>
-          <input id="phase" type="range" min="0" max="360" value="90">
-          <div class="value-row">
-            <span></span>
-            <span class="value" id="phaseVal"></span>
+            <!-- Y SIGNAL -->
+            <div class="control-group">
+              <label>Y Frequency (Hz)</label>
+              <input id="yFreq" type="range" min="1" max="20" value="4">
+              <div class="value-row">
+                <span></span>
+                <span class="value" id="yFreqVal"></span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label>Y Amplitude</label>
+              <input id="yAmp" type="range" min="1" max="10" value="1">
+              <div class="value-row">
+                <span></span>
+                <span class="value" id="yAmpVal"></span>
+              </div>
+            </div>
+
+            <!-- PHASE -->
+            <div class="control-group">
+              <label>Phase Offset</label>
+              <input id="phase" type="range" min="0" max="360" value="90">
+              <div class="value-row">
+                <span></span>
+                <span class="value" id="phaseVal"></span>
+              </div>
+            </div>
+
           </div>
+
         </div>
 
       </div>
 
     </div>
 
+    <div class="masonry-grid-column">
+
+      <div class="card">
+        <h3>VECTOR GRAPHICS JET TOKAMAK FUSION PULSE HOMAGE</h3>
+
+        <div class="video-wrapper">
+          <iframe
+            class="retro-video"
+            width="100%"
+            height="400"
+            title="vector_tokamak"
+            src="https://player.vimeo.com/video/678671238?context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&h=f00d8ca01d&s=cc1a6ccd961d9679986ec80cd4bf207a3ca2fc66_1779239648"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-</section>
-
-<section/>
-  <div class="card">
-    <h3>VECTOR GRAPHICS JET TOKAMAK FUSION PULSE HOMAGE</h3>
-  <div class="video-wrapper">
-    <iframe class="retro-video" width="100%" height="400" title="vector_tokamak" 
-      src="https://player.vimeo.com/video/678671238?context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&h=f00d8ca01d&s=cc1a6ccd961d9679986ec80cd4bf207a3ca2fc66_1779239648"
-      width="100%" height="400">
-    </iframe>
-  </div>
-  </div>
 </section>
 
 <footer class="footer">
